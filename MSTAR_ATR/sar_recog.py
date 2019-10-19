@@ -46,8 +46,8 @@ model2 = Model(inputs=model.input, outputs=x)
 #model2 = load_model('mstar.h5')
 
 
-for layer in model2.layers[:45]: # set the first 11 layers(fine tune conv4 and conv5 block can also further improve accuracy
-    layer.trainable = False
+for layer in model2.layers[:45]: # set the first 11 layers(fine tune conv4 and conv5 block can also further improve accuracy，卷积层4，5
+    layer.trainable = False  #「冻结」一个层意味着将其排除在训练之外，即其权重将永远不会更新。这在微调模型或使用固定的词向量进行文本输入中很有用。
 model2.compile(loss='binary_crossentropy',
               optimizer = SGD(lr=1e-3,momentum=0.9),#SGD(lr=1e-3,momentum=0.9)
               metrics=['accuracy'])
